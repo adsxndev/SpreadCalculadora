@@ -1,0 +1,1 @@
+web: gunicorn spreadsite.wsgi:application
