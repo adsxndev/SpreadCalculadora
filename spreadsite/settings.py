@@ -53,10 +53,7 @@ WSGI_APPLICATION = 'spreadsite.wsgi.application'
 
 # Banco de dados
 DATABASES = {
-    'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': BASE_DIR / config('DB_NAME'),
-    }
+    'default': dj_database_url.config(conn_max_age=600),
 }
 
 # Validação de senhas
