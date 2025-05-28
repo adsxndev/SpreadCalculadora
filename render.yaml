@@ -5,7 +5,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py migrate --noinput
-    startCommand: gunicorn spread_calculadora.wsgi:application --bind 0.0.0.0:$PORT
+    startCommand: gunicorn spreadsite.wsgi:application
     envVars:
       - key: SECRET_KEY
         fromSecret: SECRET_KEY
@@ -14,4 +14,4 @@ services:
       - key: DEBUG
         value: "False"
       - key: DJANGO_SETTINGS_MODULE
-        value: spread_calculadora.settings
+        value: spreadsite.settings
