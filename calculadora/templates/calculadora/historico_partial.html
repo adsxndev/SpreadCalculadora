@@ -1,0 +1,31 @@
+<tbody>
+    {% for r in registros %}
+    <tr>
+        <td>{{ r.criado_em|date:"d/m/Y H:i" }}</td>
+        <td>{{ r.spot_abertura|floatformat:2 }}</td>
+        <td>{{ r.short_abertura|floatformat:2 }}</td>
+        <td class="{% if r.spread_abertura >= 0 %}positive{% else %}negative{% endif %}">
+            {{ r.spread_abertura|floatformat:2 }}%
+        </td>
+        <td>{{ r.spot_fechamento|floatformat:2 }}</td>
+        <td>{{ r.short_fechamento|floatformat:2 }}</td>
+        <td class="{% if r.spread_fechamento >= 0 %}positive{% else %}negative{% endif %}">
+            {{ r.spread_fechamento|floatformat:2 }}%
+        </td>
+        <td class="{% if r.lucro >= 0 %}profit{% else %}loss{% endif %}">
+            {{ r.lucro|floatformat:2 }}%
+        </td>
+        <td>
+            <button class="delete-btn" onclick="deleteRegistro({{ r.id }})">
+                🗑️
+            </button>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="9" class="empty-message">
+            Nenhuma operação registrada
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>

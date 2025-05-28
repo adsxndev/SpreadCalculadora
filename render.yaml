@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: spreadcalculadora
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+    startCommand: gunicorn spread_calculadora.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: spread_calculadora.settings

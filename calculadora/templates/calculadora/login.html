@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'calculadora/css/login.css' %}">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Usuário:</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <p>Não tem cadastro? <a href="{% url 'calculadora:cadastro' %}">Clique aqui para cadastrar</a></p>
+    </div>
+
+</body>
+</html>
