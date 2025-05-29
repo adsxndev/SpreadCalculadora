@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 from decouple import config, Csv
-import dj_database_url
 
 # Caminhos
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,7 +53,14 @@ WSGI_APPLICATION = 'spreadsite.wsgi.application'
 
 # Banco de dados
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+    }
 }
 
 # Validação de senhas
@@ -72,10 +78,6 @@ USE_I18N = True
 USE_TZ = True
 
 # Arquivos estáticos
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Se tiver pasta local chamada "static", adicione:
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
