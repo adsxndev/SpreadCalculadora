@@ -9,9 +9,11 @@ services:
     envVars:
       - key: SECRET_KEY
         fromSecret: SECRET_KEY
+      - key: DEBUG
+        fromSecret: DEBUG
+      - key: ALLOWED_HOSTS
+        fromSecret: ALLOWED_HOSTS
       - key: DATABASE_URL
         fromSecret: DATABASE_URL
-      - key: DEBUG
-        value: "False"
       - key: DJANGO_SETTINGS_MODULE
         value: spreadsite.settings
