@@ -54,7 +54,7 @@ WSGI_APPLICATION = 'spreadsite.wsgi.application'
 
 # Banco de dados
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 # Validação de senhas
